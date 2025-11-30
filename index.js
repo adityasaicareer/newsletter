@@ -20,7 +20,7 @@ const transporter=nodemailer.createTransport({
 async function getmails()
 {
     const now=new Date().toISOString();
-    const {data,error}=await supabase.from("users").select("email").gt("next_send_at",now)
+    const {data,error}=await supabase.from("users").select("email").lt("next_send_at",now)
     const arr=data.map((i)=>i.email)
     return arr
 }
